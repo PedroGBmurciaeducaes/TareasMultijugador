@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - background
+  - Water
+  - UI
+  - solido
+  - decoracion
+  - Prueba
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Jugador
+    uniqueID: 3783695385
+    locked: 0
+  - name: Fondo
+    uniqueID: 2091482957
+    locked: 0
+  - name: decoracion
+    uniqueID: 176393505
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 3081053147
+    locked: 0
+  m_RenderingLayers:
+  - Default
