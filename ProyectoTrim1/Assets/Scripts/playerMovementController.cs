@@ -29,6 +29,9 @@ public class playerMovementController : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
+        bool sprint = Input.GetKey(KeyCode.LeftShift);
+
+
 
 
 
@@ -53,6 +56,19 @@ public class playerMovementController : MonoBehaviour
         }
 
 
+        if (sprint)
+        {
+            rb.linearVelocity = new Vector2(moveInput * moveSpeed * 2, rb.linearVelocity.y);
+            anim.SetBool("run", true);
+
+        }
+        else
+        {
+            anim.SetBool("run", false);
+        }
+
+
+
         // Verificamos si estamos tocando el suelo
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
@@ -75,5 +91,12 @@ public class playerMovementController : MonoBehaviour
         }
 
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+
 
 }
