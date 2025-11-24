@@ -3,20 +3,42 @@ using Unity.Netcode;
 
 public class TurretController : NetworkBehaviour
 {
+    [SerializeField] private InputReader inputReader;
+
     public float rotateSpeed = 120f;
-    public bool controlWithMouse = true;
-    public Transform tankBody; // referencia al cuerpo del tanque
+    public bool controlWithMouse = false;   //  Si quieres usar el mouse, activa esto
+    public Transform tankBody;
+
+    private float rotateInput = 0f;
+
+    private void Start()
+    {
+        if (!IsOwner) return;
+
+        inputReader.RotateTurretEvent += OnRotateTurret;
+    }
+
+    private void OnDestroy()
+    {
+        if (!IsOwner) return;
+
+        inputReader.RotateTurretEvent -= OnRotateTurret;
+    }
+
+    private void OnRotateTurret(float value)
+    {
+        rotateInput = value;
+    }
 
     void Update()
     {
-        // --- seguir al cuerpo ---
+        if (!IsOwner) return;
+
+        // --- Seguir al cuerpo ---
         if (tankBody != null)
-        {
             transform.position = tankBody.position;
-        }
 
-
-        // --- control de rotación ---
+        // --- Control con ratón ---
         if (controlWithMouse)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -26,10 +48,8 @@ public class TurretController : NetworkBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.N))
-                transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
-            else if (Input.GetKey(KeyCode.M))
-                transform.Rotate(Vector3.forward * -rotateSpeed * Time.deltaTime);
+            // --- Control con N/M usando InputReader ---
+            transform.Rotate(Vector3.forward * -rotateInput * rotateSpeed * Time.deltaTime);
         }
     }
 }
