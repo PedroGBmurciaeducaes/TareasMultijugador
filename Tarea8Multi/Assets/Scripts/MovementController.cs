@@ -11,32 +11,27 @@ public class TankController : NetworkBehaviour
     public float moveSpeed = 5f;
     public float rotateSpeed = 100f;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         if (!IsOwner) return;
 
         inputReader.MoveEvent += OnMove;
         inputReader.RotateBodyEvent += OnRotateBody;
-        inputReader.PrimaryFireEvent += OnFire;
     }
 
-    private void OnDestroy()
+    public override void OnNetworkDespawn()
     {
         if (!IsOwner) return;
 
         inputReader.MoveEvent -= OnMove;
         inputReader.RotateBodyEvent -= OnRotateBody;
-        inputReader.PrimaryFireEvent -= OnFire;
     }
 
     private void OnMove(Vector2 move) => moveInput = move;
 
     private void OnRotateBody(float rotate) => rotateBodyInput = rotate;
 
-    private void OnFire(bool firing)
-    {
-        Debug.Log("Firing: " + firing);
-    }
+
 
     private void Update()
     {

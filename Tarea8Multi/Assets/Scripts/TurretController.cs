@@ -11,14 +11,14 @@ public class TurretController : NetworkBehaviour
 
     private float rotateInput = 0f;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         if (!IsOwner) return;
 
         inputReader.RotateTurretEvent += OnRotateTurret;
     }
 
-    private void OnDestroy()
+    public override void OnNetworkDespawn()
     {
         if (!IsOwner) return;
 
