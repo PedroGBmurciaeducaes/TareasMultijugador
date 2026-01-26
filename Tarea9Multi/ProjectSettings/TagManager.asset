@@ -38,11 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Player
+    uniqueID: 2421692215
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 2421692215
+  - name: humo
+    uniqueID: 3694027321
     locked: 0
   m_RenderingLayers:
   - Default

@@ -63,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7285586065995215260, guid: b0a65684b13ad5a48ad8a84ff00db048, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3784794970369053465}
+    - targetCorrespondingSourceObject: {fileID: 7285586065995215260, guid: b0a65684b13ad5a48ad8a84ff00db048, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9221455963512387894}
   m_SourcePrefab: {fileID: 100100000, guid: b0a65684b13ad5a48ad8a84ff00db048, type: 3}
 --- !u!1 &7435184272835364934 stripped
 GameObject:
@@ -127,3 +130,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9221455963512387894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435184272835364934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448869034adf75d489eb9ff7d6e727e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnGameObjectOnDestroy
+  particlePrefab: {fileID: 4116448304637484705, guid: 30e3b6415a444b64ea37834ce40abbd1, type: 3}

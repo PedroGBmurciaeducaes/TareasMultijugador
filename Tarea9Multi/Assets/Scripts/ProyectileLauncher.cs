@@ -117,15 +117,17 @@ public class ProjectileLauncher : NetworkBehaviour
         }
     }
 
-
     [ServerRpc]
     private void PrimaryFireServerRpc(Vector3 spawnPos, Vector3 direction)
     {
-        GameObject projectileInstance = Instantiate(serverProjectilePrefab,spawnPos, Quaternion.identity );
+        GameObject projectileInstance = Instantiate(serverProjectilePrefab, spawnPos, Quaternion.identity);
+
+        // IMPORTANTE: Spawnear en red
+        NetworkObject netObj = projectileInstance.GetComponent<NetworkObject>();
+        netObj.Spawn();
 
         projectileInstance.transform.up = direction;
 
-        //  Ignorar colisión con el tanque que dispara (lado servidor)
         var projectileCollider = projectileInstance.GetComponent<CircleCollider2D>();
         if (projectileCollider != null && playerCollider != null)
         {
@@ -137,7 +139,11 @@ public class ProjectileLauncher : NetworkBehaviour
             rb.linearVelocity = rb.transform.up * projectileSpeed;
         }
 
-        // Notificar a todos los clientes
+        if (projectileInstance.TryGetComponent<DealDamageOnContact>(out var dealDamage))
+        {
+            dealDamage.SetOwner(OwnerClientId);
+        }
+
         SpawnDummyProjectileClientRpc(spawnPos, direction);
     }
 
